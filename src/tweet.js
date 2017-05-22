@@ -6,7 +6,8 @@ function Tweet(message, recipients) {
 }
 
 Tweet.prototype.isValid = function() {
-    return this.message != null && (this.message.length > 0 && this.message.length <= 140);
+    var fullMessage = this.getFullMessage();
+    return fullMessage != null && (fullMessage.length > 0 && fullMessage.length <= 140);
 }
 
 Tweet.prototype.getFullMessage = function() {

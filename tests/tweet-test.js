@@ -31,16 +31,31 @@ describe('Tweet', function() {
 
     it('getFullMessage() should return a string with all recipients with the message appended.', function() {
         var tweet = new Tweet('short tweet', [ 'tex_red' ]);
-        assert.equal(tweet.getFullMessage(), '.@tex_red short tweet');
+        expect(tweet.getFullMessage()).to.equal('.@tex_red short tweet');
     });
 
     it('getFullMessage() should return the message if there are no recipients.', function() {
         var tweet = new Tweet('short tweet');
-        assert.equal(tweet.getFullMessage(), 'short tweet');
+        expect(tweet.getFullMessage()).to.equal('short tweet');
     });
 
     it('getFullMessage() should return multiple recipients before the message.', function() {
         var tweet = new Tweet('short tweet', [ 'tex_red', 'mumford', 'daveh' ]);
-        assert.equal(tweet.getFullMessage(), '.@tex_red @mumford @daveh short tweet');
+        expect(tweet.getFullMessage()).to.equal('.@tex_red @mumford @daveh short tweet');
+    });
+
+    it('isValid() should return false if the message and recipients are too long', function() {
+        var tweet = new Tweet('140testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttestt', [ 'tex_red' ]);
+        expect(tweet.isValid()).to.equal(false);
+    });
+
+    it('isValid() should return false if the recipients are too long', function() {
+        var tweet = new Tweet('', [ '140testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttestt' ]);
+        expect(tweet.isValid()).to.equal(false);
+    });
+
+    it('isValid() should return true if the message and recipients are not too long', function() {
+        var tweet = new Tweet('short tweet', [ 'tex_red' ]);
+        expect(tweet.isValid()).to.equal(true);
     });
 });
