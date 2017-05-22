@@ -23,3 +23,4 @@ Unit tests for the project can be run with the following command. This will run 
 ## Gitflow experimentation
 
 The workflow that is being used is inspired by [Vincent Driessen's branching model](http://nvie.com/posts/a-successful-git-branching-model/).
+
