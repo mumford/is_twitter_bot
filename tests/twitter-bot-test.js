@@ -25,6 +25,7 @@ describe('TwitterBot', function() {
         twitterBot.postMessage(tweet, callback);
 
         expect(callback.calledOnce).to.equal(true);
+        isValid.restore();
     });
 
     it('postMessage() should send error in callback if tweet is not valid.', function() {
@@ -37,5 +38,6 @@ describe('TwitterBot', function() {
         twitterBot.postMessage(tweet, callback);
 
         expect(callback.args[0][0]).to.be.a('string');
+        isValid.restore();
     });
 });
