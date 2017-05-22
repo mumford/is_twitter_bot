@@ -54,8 +54,32 @@ describe('TwitterBot', function() {
         
         twitterBot.postMessage(tweet, function() { });
 
-        tweetDestinationSpy.restore();        
+        tweetDestinationSpy.restore();
         
         expect(tweetDestinationSpy.calledOnce).to.equal(true);
     });
+
+    it('postRepeatingMessage() posts a tweet if post delay has expired', function() {
+        var consoleTweeter = new ConsoleTweeter();
+        var tweetDestinationSpy = sinon.spy(consoleTweeter, 'postTweet');
+        var twitterBot = new TwitterBot(
+            {
+                'repeatingMessages':{
+                    'messages':[
+                        'Meet me at Zero\'s',
+                        'Find your testament',
+                        'Death won\'t deter you'
+                    ]
+                }
+            }, consoleTweeter);
+        var isRepeatingPostDelayExpired = sinon.stub(twitterBot, 'isRepeatingPostDelayExpired');
+        isRepeatingPostDelayExpired.returns(true); 
+
+        twitterBot.postRepeatingMessage(function() { });
+
+        isRepeatingPostDelayExpired.restore();
+        tweetDestinationSpy.restore();
+
+        expect(tweetDestinationSpy.calledOnce).to.equal(true);
+    })
 });
