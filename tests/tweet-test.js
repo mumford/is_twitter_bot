@@ -1,5 +1,6 @@
 var chai = require('chai'),
     expect = chai.expect,
+    assert = chai.assert,
     Tweet = require('./../src/tweet');
 
 describe('Tweet', function() {
@@ -27,4 +28,9 @@ describe('Tweet', function() {
         var tweet = new Tweet('short tweet');
         expect(tweet.isValid()).to.equal(true);
     });
+
+    it('getFullMessage should return a string with all recipients with the message appended.', function() {
+        var tweet = new Tweet('short tweet', [ 'tex_red' ]);
+        assert.equal(tweet.getFullMessage(), '.@tex_red short tweet');
+    })    
 });
