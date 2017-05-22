@@ -15,7 +15,7 @@ Tweet.prototype.getFullMessage = function() {
         return util.stringFormat('.@{0} {1}', this.recipients.join(' @'), this.message);
     } else {
         return this.message;
-    }    
+    }
 }
 
 module.exports = Tweet;
