@@ -29,8 +29,18 @@ describe('Tweet', function() {
         expect(tweet.isValid()).to.equal(true);
     });
 
-    it('getFullMessage should return a string with all recipients with the message appended.', function() {
+    it('getFullMessage() should return a string with all recipients with the message appended.', function() {
         var tweet = new Tweet('short tweet', [ 'tex_red' ]);
         assert.equal(tweet.getFullMessage(), '.@tex_red short tweet');
-    })    
+    });
+
+    it('getFullMessage() should return the message if there are no recipients.', function() {
+        var tweet = new Tweet('short tweet');
+        assert.equal(tweet.getFullMessage(), 'short tweet');
+    });
+
+    it('getFullMessage() should return multiple recipients before the message.', function() {
+        var tweet = new Tweet('short tweet', [ 'tex_red', 'mumford', 'daveh' ]);
+        assert.equal(tweet.getFullMessage(), '.@tex_red @mumford @daveh short tweet');
+    });
 });

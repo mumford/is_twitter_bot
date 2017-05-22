@@ -10,7 +10,11 @@ Tweet.prototype.isValid = function() {
 }
 
 Tweet.prototype.getFullMessage = function() {
-    return util.stringFormat('.@{0} {1}', this.recipients, this.message);
+    if (this.recipients) {
+        return util.stringFormat('.@{0} {1}', this.recipients.join(' @'), this.message);
+    } else {
+        return this.message;
+    }    
 }
 
 module.exports = Tweet;
