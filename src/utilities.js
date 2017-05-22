@@ -9,12 +9,14 @@ function stringFormat(format) {
 };
 
 function logMessage(message) {
-  var args = Array.prototype.slice.call(arguments, 1);
-  if (args.length > 1) {
-    console.log(stringFormat(arguments[0], args));
-  } else {
-    console.log(message);
-  }
+  if (process.env.NODE_ENV !== 'test') {
+    var args = Array.prototype.slice.call(arguments, 1);
+    if (args.length > 1) {
+      console.log(stringFormat(arguments[0], args));
+    } else {
+      console.log(message);
+    }
+  }  
 };
 
 module.exports = {

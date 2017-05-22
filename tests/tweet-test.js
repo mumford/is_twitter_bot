@@ -1,3 +1,5 @@
+process.env.NODE_ENV = 'test';
+
 var chai = require('chai'),
     expect = chai.expect,
     Tweet = require('./../src/tweet');

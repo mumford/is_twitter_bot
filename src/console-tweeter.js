@@ -6,10 +6,10 @@ function ConsoleTweeter(options) {
 
 ConsoleTweeter.prototype.postTweet = function(tweet, callback) {
     if (tweet.isValid()) {
-        util.logMessage(tweet);
+        util.logMessage(tweet.getFullMessage());
         callback();
     } else {
-        util.logMessage('The supplied tweet was invalid.\n\n{0}', tweet.getFullMessage());
+        util.logMessage(util.stringFormat('The supplied tweet was invalid.\n\n{0}', tweet.getFullMessage()));
         callback('Tweet is not valid.', tweet);
     }    
 };
